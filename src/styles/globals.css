@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Share Tech Mono', monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* From Uiverse.io by adamgiebl */
+.connect {
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 19px;
+  padding: 0.6em 1.3em 0.6em 0.9em;
+  color: white;
+  background: rgb(57, 185, 243);
+  background: linear-gradient(
+    39deg,
+    rgba(57, 185, 243, 1) 0%,
+    rgba(9, 155, 223, 1) 100%
+  );
+  border: none;
+  letter-spacing: 0.05em;
+  border-radius: 16px;
+}
+
+.connect svg {
+  margin-right: 3px;
+  transform: rotate(30deg);
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.connect span {
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.connect:hover svg {
+  transform: translateX(5px) rotate(90deg);
+}
+
+.connect:hover span {
+  transform: translateX(7px);
+}
+
+@keyframes up-and-down {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50px);
+  }
+}
+
+@keyframes shadow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.1;
+  }
+}
+
+.animate-up-and-down {
+  animation: up-and-down 2s ease-in-out infinite;
+}
+
+.animate-shadow {
+  animation: shadow 2s ease-in-out infinite;
+}
+
+@keyframes loading-dots {
+  0% {
+    content: '';
+  }
+  33% {
+    content: '.';
+  }
+  66% {
+    content: '..';
+  }
+  100% {
+    content: '...';
+  }
+}
+
+.dots::after {
+  content: '';
+  animation: loading-dots 5s steps(4, end) infinite;
+}
+
+.rocket-container {
+  animation: orbit 4s linear forwards;
+}
+
+.rocket-image {
+  transform-origin: center;
+  animation: infinite-spinning 4s linear forwards;
+}
+
+/* Orbit Animation */
+@keyframes orbit {
+  0% {
+    transform: rotate(180deg) translateX(24rem) rotate(-180deg); /* Start at the left, face right */
+  }
+  25% {
+    transform: rotate(270deg) translateX(24rem) rotate(-270deg);
+  }
+  50% {
+    transform: rotate(360deg) translateX(24rem) rotate(-360deg); /* At the right, face left */
+  }
+  75% {
+    transform: rotate(450deg) translateX(24rem) rotate(-450deg);
+  }
+  100% {
+    transform: rotate(540deg) translateX(24rem) rotate(-540deg); /* Back to the left, face right */
+  }
+}
+
+@keyframes infinite-spinning {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
