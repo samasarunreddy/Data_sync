@@ -1,13 +1,14 @@
 'use client';
 
 import { TextInput } from '@mantine/core';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
-export default function MainFormComponent() {
-  const { control } = useForm();
+export default function MainFormComponent({ onClick, control }) {
   return (
     <div className='bg-form-bg-color text-white flex flex-col gap-y-6 py-12 px-8 rounded-3xl border border-green-300'>
-      <span className='text-2xl 2xl:text-3xl'>Provide the keys for database sync</span>
+      <span className='text-2xl 2xl:text-3xl'>
+        Provide the keys for database sync
+      </span>
       <Controller
         name='sender_url'
         control={control}
@@ -37,7 +38,7 @@ export default function MainFormComponent() {
         )}
       />
       <div className='flex justify-center'>
-        <button className='connect'>
+        <button className='connect' onClick={onClick}>
           <svg
             height='24'
             width='24'

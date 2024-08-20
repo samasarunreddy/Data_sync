@@ -4,6 +4,7 @@ import '@mantine/core/styles.css';
 import WrapperProvider from '@/wrapper/wrapperProvider';
 import StyledComponentsRegistry from '@/lib/registry';
 import { ColorSchemeScript } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -30,6 +31,11 @@ export default function RootLayout({ children }) {
       </head>
       <body className='font-stmono'>
         <WrapperProvider>
+          <Notifications
+            position='top-right'
+            autoClose={4000}
+            color='#ffffff'
+          />
           <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
         </WrapperProvider>
       </body>

@@ -1,5 +1,5 @@
 const apiEndPoints = {
-  USER_LOGIN: 'test/api',
+  POST_FORM: '',
 };
 
 export default apiEndPoints;

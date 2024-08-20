@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-export default function ServerProgress() {
+export default function ServerProgress({ message, instance, percentage }) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ export default function ServerProgress() {
         const newProgress = (prev + 1) % 100;
         return newProgress;
       });
-    }, 40); // Adjust timing as needed
+    }, 40);
 
     return () => clearInterval(interval);
   }, []);
@@ -21,7 +21,11 @@ export default function ServerProgress() {
       {/* Circular Background */}
       <div className='absolute inset-0 flex items-center justify-center'>
         <div className='w-[50rem] h-[50rem] bg-white rounded-full flex justify-center items-center'>
-          <div className='w-[48rem] h-[48rem] bg-form-bg-color rounded-full absolute'></div>
+          <div className='w-[48rem] h-[48rem] bg-form-bg-color rounded-full absolute flex flex-col justify-center items-center'>
+            <span>{message}</span>
+            <span className='text-3xl'>{percentage}</span>
+            <span className='text-xl pt-2'>{instance}</span>
+          </div>
         </div>
       </div>
 
