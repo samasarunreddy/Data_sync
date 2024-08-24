@@ -8,7 +8,6 @@ body {
   font-style: normal;
 }
 
-/* From Uiverse.io by adamgiebl */
 .connect {
   display: flex;
   align-items: center;
@@ -95,50 +94,4 @@ body {
 .dots::after {
   content: '';
   animation: loading-dots 5s steps(4, end) infinite;
-}
-
-.rocket-container {
-  animation: orbit 4s linear forwards;
-}
-
-.rocket-image {
-  transform-origin: center;
-  animation: infinite-spinning 4s linear forwards;
-}
-
-/* Orbit Animation */
-@keyframes orbit {
-  0% {
-    transform: rotate(180deg) translateX(24rem) rotate(-180deg);
-  }
-  /* 25% {
-    transform: rotate(270deg) translateX(24rem) rotate(-270deg);
-  }
-  50% {
-    transform: rotate(360deg) translateX(24rem) rotate(-360deg);
-  }
-  75% {
-    transform: rotate(450deg) translateX(24rem) rotate(-450deg);
-  } */
-  100% {
-    transform: rotate(540deg) translateX(24rem) rotate(-540deg);
-  }
-}
-
-@keyframes infinite-spinning {
-  0% {
-    transform: rotate(0deg);
-  }
-  /* 25% {
-    transform: rotate(90deg);
-  }
-  50% {
-    transform: rotate(180deg);
-  }
-  75% {
-    transform: rotate(270deg);
-  } */
-  100% {
-    transform: rotate(360deg);
-  }
 }
