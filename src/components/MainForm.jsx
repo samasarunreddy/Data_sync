@@ -5,7 +5,7 @@ import { Controller } from 'react-hook-form';
 
 export default function MainFormComponent({ onClick, control }) {
   return (
-    <div className='bg-form-bg-color text-white flex flex-col gap-y-6 py-12 px-8 rounded-3xl border border-green-300'>
+    <div className='text-white flex flex-col gap-y-6 py-12 px-8 rounded-3xl border border-[#09CBFB] shadow-[0_2px_4px_-1px_#09CBFB]'>
       <span className='text-2xl 2xl:text-3xl'>
         Provide the keys for database sync
       </span>

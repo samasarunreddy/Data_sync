@@ -22,12 +22,9 @@ export default function MainPage() {
   )}/ws/data-transformation-socket/`;
 
   const [socketUrl, setSocketUrl] = useState(null);
-  const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(
-    socketUrl,
-    {
-      shouldReconnect: () => true,
-    }
-  );
+  const { sendJsonMessage, lastJsonMessage } = useWebSocket(socketUrl, {
+    shouldReconnect: () => true,
+  });
 
   useEffect(() => {
     if (watch('receiver_url')) {
@@ -50,8 +47,6 @@ export default function MainPage() {
     },
     [lastJsonMessage?.data?.status_code, sendJsonMessage, senderUrl]
   );
-
-  console.log('WebSocket Data:', lastJsonMessage);
 
   return (
     <main className='flex flex-col flex-auto text-white'>
@@ -79,11 +74,10 @@ export default function MainPage() {
             instance={lastJsonMessage?.data?.instance}
             percentage={
               lastJsonMessage?.type === 'data_transformation' &&
-              `${lastJsonMessage?.data?.message}`
+              `${Number(lastJsonMessage?.data?.message?.split()[0])}`
             }
           />
         ) : null}
-        {/* <ServerProgress /> */}
       </div>
     </main>
   );
