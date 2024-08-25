@@ -9,7 +9,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'form-bg': "url('/assets/images/formBg.svg')",
+        'form-bg': "url('/assets/images/FormBackground.svg')",
       },
       fontFamily: {
         stmono: ['Share Tech Mono', 'monospace'],

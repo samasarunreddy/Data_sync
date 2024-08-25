@@ -3,6 +3,16 @@
 
 import { useEffect, useState } from 'react';
 
+/**
+ * Renders a progress indicator for a server operation.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} [props.message] - The message to display.
+ * @param {string} [props.instance] - The instance information to display.
+ * @param {number} props.percentage - The progress percentage to display.
+ * @returns {JSX.Element} The progress indicator component.
+ */
+
 export default function ServerProgress({ message, instance, percentage }) {
   const [size, setSize] = useState(0);
 
@@ -26,6 +36,7 @@ export default function ServerProgress({ message, instance, percentage }) {
         className='flex justify-center items-center relative'
         style={{ width: size, height: size }}
       >
+        {/*Left and right server */}
         <div className='relative z-10 flex justify-between items-center w-full'>
           <img
             src='/assets/images/serverLeft.png'
@@ -38,10 +49,11 @@ export default function ServerProgress({ message, instance, percentage }) {
             className='relative z-20 h-[calc(100vh-60vh)]'
           />
         </div>
+        {/*Percentages and instances */}
         <div
           style={{
             background: `conic-gradient(
-              #808080 ${percentage * 3.6}deg,
+              #39F349 ${percentage * 3.6}deg,
               #ffffff ${percentage * 3.6}deg 360deg
             )`,
             transform: 'rotate(-90deg)',
@@ -56,6 +68,8 @@ export default function ServerProgress({ message, instance, percentage }) {
             <span className='text-xl pt-2'>{instance ?? '100/100'}</span>
           </div>
         </div>
+
+        {/*Rocket animation*/}
         <div
           className='absolute'
           style={{
