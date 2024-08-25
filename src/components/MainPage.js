@@ -8,6 +8,10 @@ import { useCallback, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useWebSocket from 'react-use-websocket';
 
+/**
+ * The main page component for the application.
+ * This component handles the form input, WebSocket connection, and rendering of various sub-components based on the WebSocket message type.
+ */
 export default function MainPage() {
   const { control, handleSubmit, watch } = useForm({
     defaultValues: {
@@ -16,8 +20,8 @@ export default function MainPage() {
     },
   });
 
-  const senderUrl = `ws://${watch('sender_url')}/ws/sender-socket/`;
-  const receiverUrl = `ws://${watch(
+  const senderUrl = `wss://${watch('sender_url')}/ws/sender-socket/`;
+  const receiverUrl = `wss://${watch(
     'receiver_url'
   )}/ws/data-transformation-socket/`;
 
@@ -50,7 +54,8 @@ export default function MainPage() {
 
   return (
     <main className='flex flex-col flex-auto text-white'>
-      <div className='bg-form-bg-color bg-cover h-screen w-full flex flex-col justify-center items-center'>
+      <div className='bg-form-bg-color h-screen w-full flex flex-col justify-center items-center'>
+        {/*Form component */}
         {(lastJsonMessage === null ||
           lastJsonMessage?.type === 'data_transformation_controller') && (
           <MainFormComponent
@@ -59,11 +64,13 @@ export default function MainPage() {
           />
         )}
 
+        {/*Handshake component */}
         {lastJsonMessage?.type === 'token_verification' ||
         lastJsonMessage?.type === 'secret_key_verification' ? (
           <HandShakeComponent />
         ) : null}
 
+        {/*Server progress and rocket animation */}
         {lastJsonMessage?.type === 'schema_verification' ||
         lastJsonMessage?.type === 'data_transformation' ? (
           <ServerProgress
