@@ -1,6 +1,6 @@
 'use client';
 
-import { TextInput } from '@mantine/core';
+import { Loader, TextInput } from '@mantine/core';
 import { Controller } from 'react-hook-form';
 
 /**
@@ -11,10 +11,10 @@ import { Controller } from 'react-hook-form';
  * @param {Object} props.control - The React Hook Form control object.
  * @returns {JSX.Element} The rendered main form component.
  */
-export default function MainFormComponent({ onClick, control }) {
+export default function MainFormComponent({ onClick, control, loading }) {
   return (
     <div className='bg-form-bg bg-cover h-screen w-full flex justify-center items-center'>
-      <div className='w-1/2 bg-form-bg-color text-white flex flex-col gap-y-6 py-12 px-8 rounded-3xl border border-[#09CBFB] shadow-[0_2px_4px_-1px_#09CBFB]'>
+      <div className='w-2/3 md:w-1/2 bg-form-bg-color text-white flex flex-col gap-y-6 py-12 px-8 rounded-3xl border border-[#09CBFB] shadow-[0_2px_4px_-1px_#09CBFB]'>
         <span className='text-2xl 2xl:text-3xl'>
           Provide the keys for database sync
         </span>
@@ -60,7 +60,7 @@ export default function MainFormComponent({ onClick, control }) {
                 fill='currentColor'
               ></path>
             </svg>
-            <span>Connect</span>
+            {loading ? <Loader /> : <span>Connect</span>}
           </button>
         </div>
       </div>

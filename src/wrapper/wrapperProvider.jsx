@@ -1,19 +1,7 @@
 'use client';
-import { Provider as ReduxProvider } from 'react-redux';
 import { createTheme, MantineProvider } from '@mantine/core';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import store from '../store/store';
 
 export default function WrapperProvider({ children }) {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: false,
-        retry: 1,
-      },
-    },
-  });
-
   const theme = createTheme({
     colors: {
       primary: [
@@ -32,11 +20,5 @@ export default function WrapperProvider({ children }) {
     primaryColor: 'primary',
   });
 
-  return (
-    <ReduxProvider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
-      </QueryClientProvider>
-    </ReduxProvider>
-  );
+  return <MantineProvider theme={theme}>{children}</MantineProvider>;
 }

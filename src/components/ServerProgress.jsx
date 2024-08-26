@@ -13,10 +13,16 @@ import { useEffect, useState } from 'react';
  * @returns {JSX.Element} The progress indicator component.
  */
 
-export default function ServerProgress({ message, instance, percentage }) {
+export default function ServerProgress({
+  message,
+  instance,
+  percentage,
+  completed,
+  transMessage,
+  transMessage1,
+}) {
   const [size, setSize] = useState(0);
 
-  const radius = `calc(${size}px * 0.405)`;
   const rocketHeight = `5rem`;
 
   useEffect(() => {
@@ -29,6 +35,26 @@ export default function ServerProgress({ message, instance, percentage }) {
 
     return () => window.removeEventListener('resize', updateSize);
   }, []);
+
+  const getRadius = () => {
+    const width = window.innerWidth;
+
+    if (width >= 2560) {
+      return `calc(${size}px * 0.374)`;
+    } else if (width >= 1920) {
+      return `calc(${size}px * 0.389)`;
+    } else if (width >= 1600) {
+      return `calc(${size}px * 0.39)`;
+    } else if (width >= 1440) {
+      return `calc(${size}px * 0.3925)`;
+    } else if (width >= 1366) {
+      return `calc(${size}px * 0.396)`;
+    } else if (width >= 1024) {
+      return `calc(${size}px * 0.397)`;
+    }
+  };
+
+  const radius = getRadius();
 
   return (
     <div className='w-full h-screen flex flex-col justify-center items-center'>
@@ -49,6 +75,7 @@ export default function ServerProgress({ message, instance, percentage }) {
             className='relative z-20 h-[calc(100vh-60vh)]'
           />
         </div>
+
         {/*Percentages and instances */}
         <div
           style={{
@@ -63,27 +90,41 @@ export default function ServerProgress({ message, instance, percentage }) {
           className='absolute bg-white w-[70%] h-[70%] rounded-full flex flex-col justify-center p-1'
         >
           <div className='flex flex-col items-center justify-center bg-form-bg-color rounded-full w-full h-full rotate-90'>
-            <span>{message ?? 'hi'}</span>
-            <span className='text-3xl'>{percentage}%</span>
-            <span className='text-xl pt-2'>{instance ?? '100/100'}</span>
+            <span>{transMessage}</span>
+            <span>{transMessage1}</span>
+            <span className='w-1/2 text-center font-medium'>{message}</span>
+            <span className='text-3xl'>
+              {percentage ? `${percentage}%` : ''}
+            </span>
+            <span className='text-xl pt-2'>{instance}</span>
           </div>
         </div>
 
         {/*Rocket animation*/}
-        <div
-          className='absolute'
-          style={{
-            transform: `rotate(${
-              90 + (percentage * 360) / 100
-            }deg) translateY(calc(${radius} - (${rocketHeight} / 2)))`,
-          }}
-        >
-          <img
-            src='/assets/images/rocket.png'
-            alt='rocket'
-            className='w-[5rem] rotate-[270deg]'
-          />
-        </div>
+        {completed ? (
+          <div className='absolute transition-transform duration-1000 ease-in-out pb-[11rem]'>
+            <img
+              src='/assets/images/rocket.png'
+              alt='rocket'
+              className='w-[5rem]'
+            />
+          </div>
+        ) : (
+          <div
+            className='absolute transition-transform duration-1000 ease-in-out'
+            style={{
+              transform: `rotate(${
+                90 + (percentage * 360) / 100
+              }deg) translateY(calc(${radius} - (${rocketHeight} / 2)))`,
+            }}
+          >
+            <img
+              src='/assets/images/rocket.png'
+              alt='rocket'
+              className='w-[5rem] rotate-[270deg]'
+            />
+          </div>
+        )}
       </div>
     </div>
   );

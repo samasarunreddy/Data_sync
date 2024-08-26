@@ -4,28 +4,28 @@ import SuccessCheck from '../../public/assets/icons/check_primary.svg';
 
 const SuccessToast = ({ text = '' }) => {
   notifications.show({
-    title: 'Success',
+    // title: 'Success',
     message: text,
     icon: <SuccessCheck />,
     color: '#ffffff',
     classNames: {
-      icon: '!bg-white',
-      root: '!bg-black',
+      icon: '!bg-[#97B2CB]  ',
     },
     className: 'success-toast',
+    withCloseButton: false,
   });
 };
-
-const ErrorToast = ({ text = '' }) => {
+const ErrorToast = ({ text = 'Something went wrong' }) => {
   notifications.show({
-    title: 'Error',
+    // title: 'Error',
     message: text,
-    color: '#ffffff',
+    color: '#97B2CB',
     icon: <CancelRed />,
     classNames: {
-      icon: '!bg-white border-2 border-primary',
+      icon: '!bg-[#97B2CB] ',
     },
     className: 'error-toast',
+    withCloseButton: false,
   });
 };
 
